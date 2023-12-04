@@ -1,3 +1,5 @@
+package fr.eni.module05;
+
 public class Personne {
     protected String nom;
     protected String prenom;

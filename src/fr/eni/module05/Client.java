@@ -1,3 +1,5 @@
+package fr.eni.module05;
+
 public class Client extends Personne{
 
     private String siret;
