@@ -4,16 +4,39 @@ package fr.eni.module05;
 // then press Enter. You can now see whitespace characters in your code.
 public class Main {
     public static void main(String[] args) {
-        // Press Alt+Entrée with your caret at the highlighted text to see how
-        // IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
 
-        // Press Maj+F10 or click the green arrow button in the gutter to run the code.
-        for (int i = 1; i <= 5; i++) {
+        // Override toString()
+        Client c = new Client("DUPONT","Jean", "02465465");
+       // System.out.println(c.toString());
 
-            // Press Maj+F9 to start debugging your code. We have set one breakpoint
-            // for you, but you can always add more by pressing Ctrl+F8.
-            System.out.println("i = " + i);
-        }
+        // Transtypage impl
+
+        int n;
+        float f;
+        n = 3;
+        f = n;
+
+        // Trantypage expl
+
+        int e;
+        float g;
+        g = 3.69f;
+        e = (int) g;
+
+        Animal animal = new Animal();
+        animal.crier(); // affiche "un cri d'animal"
+        Chat chat = new Chat();
+        chat.crier();   // affiche "Miaou !"
+
+        Chien chien = new Chien();
+        chien.crier();  // affiche "Whouaf whouaf !"
+
+        animal = chat;
+        animal.crier(); // affiche "Miaou !"
+
+        animal = chien;
+        animal.crier(); // affiche "Whouaf whouaf !"
+
+
     }
-}
+    }

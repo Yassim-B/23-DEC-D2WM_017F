@@ -8,8 +8,15 @@ public class Client extends Personne{
         this.siret = siret;
     }
 
+
     @Override
     public void creer(Client c) {
         super.creer(c);
     }
+
+    @Override
+    public String toString() {
+        return super.toString() + " est identifié sous le siret " + this.siret;
+    }
+
 }

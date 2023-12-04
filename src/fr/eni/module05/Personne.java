@@ -15,4 +15,9 @@ public class Personne {
     public void creer(Client c) {
         System.out.printf("%s %s est créé", this.nom, this.prenom);
     }
+
+    @Override
+    public String toString() {
+        return this.nom;
+    }
 }
