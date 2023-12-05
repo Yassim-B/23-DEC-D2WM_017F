@@ -2,100 +2,74 @@ package fr.eni.module05.tp.bo;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 
-public class Patient {
-    private String nom;
-    private String prenom;
-    private String numeroDeTelephone;
+public class Patient extends Personne {
+
     private char sexe;
     private long numeroDeSecuriteSociale;
-    private LocalDate dateDeNaisscance;
-    private String commentaire;
-    private Adresse adresse;
+    private LocalDate dateDeNaissance;
+    private String commentaires;
 
-    public Patient(String nom, String prenom, String numeroDeTelephone, char sexe, long numeroDeSecuriteSociale, LocalDate dateDeNaisscance, String commentaire, Adresse adresse) {
-        this.nom = nom;
-        this.prenom = prenom;
-        this.numeroDeTelephone = numeroDeTelephone;
+
+    /**
+     * @param prenom
+     * @param numeroDeTelephone
+     * @param sexe
+     * @param numeroDeSecuriteSociale
+     * @param dateDeNaissance
+     * @param commentaires
+     * @paramdd nom
+     */
+    public Patient(String nom, String prenom, String numeroDeTelephone, char sexe, long numeroDeSecuriteSociale,
+                   LocalDate dateDeNaissance, String commentaires, Adresse adresse) {
+
+        super(nom, prenom, numeroDeTelephone, adresse);
         this.sexe = sexe;
         this.numeroDeSecuriteSociale = numeroDeSecuriteSociale;
-        this.dateDeNaisscance = dateDeNaisscance;
-        this.commentaire = commentaire;
-        this.adresse = adresse;
+        this.dateDeNaissance = dateDeNaissance;
+        this.commentaires = commentaires;
     }
 
-    public String getNom() {
-        return nom;
-    }
-
-    public void setNom(String nom) {
-        this.nom = nom;
-    }
-
-    public String getPrenom() {
-        return prenom;
-    }
-
-    public void setPrenom(String prenom) {
-        this.prenom = prenom;
-    }
-
-    public String getNumeroDeTelephone() {
-        return numeroDeTelephone;
-    }
-
-    public void setNumeroDeTelephone(String numeroDeTelephone) {
-        this.numeroDeTelephone = numeroDeTelephone;
-    }
-
-    public char getSexe() {
-        return sexe;
-    }
-
-    public void setSexe(char sexe) {
-        this.sexe = sexe;
-    }
-
-    public long getNumeroDeSecuriteSociale() {
-        return numeroDeSecuriteSociale;
-    }
-
-    public void setNumeroDeSecuriteSociale(long numeroDeSecuriteSociale) {
-        this.numeroDeSecuriteSociale = numeroDeSecuriteSociale;
-    }
-
-    public LocalDate getDateDeNaisscance() {
-        return dateDeNaisscance;
-    }
-
-    public void setDateDeNaisscance(LocalDate dateDeNaisscance) {
-        this.dateDeNaisscance = dateDeNaisscance;
-    }
-
-    public String getCommentaire() {
-        return commentaire;
-    }
-
-    public void setCommentaire(String commentaire) {
-        this.commentaire = commentaire;
-    }
-
-    public Adresse getAdresse() {
-        return adresse;
-    }
-
-    public void setAdresse(Adresse adresse) {
-        this.adresse = adresse;
-    }
-
+    /**
+     * VAMBUCE Hillary
+     * Téléphone : 0123456789
+     * Sexe : Féminin
+     * Numéro de Sécurité sociale : 287060244010154
+     * Date de naissance : 2 juin 1987
+     * Commentaires : Allergie aux arachides
+     */
     public void afficher() {
-        System.out.println(this.nom.toUpperCase() + " " + this.prenom);
-        System.out.println("Téléphone : " + this.numeroDeTelephone);
-        System.out.println("Sexe : " + (this.sexe == 'F' ? "Féminin" : "Masuclin"));
-        System.out.println("Numéro de sécurité sociale : " + this.numeroDeSecuriteSociale);
-        System.out.println("Date de naissance : " + DateTimeFormatter.ofPattern("dd MMMM yyyy").format(this.dateDeNaisscance));
-        System.out.println("Commentaires : " + (this.commentaire == null ? "[Aucun Commentaire]" : this.commentaire));
-        System.out.println("Adresse : ");
+        StringBuilder sb = new StringBuilder(this.nom.toUpperCase())
+                .append(" ")
+                .append(this.prenom)
+                .append("\n")
+                .append("Téléphone : ")
+                .append(this.numeroDeTelephone)
+                .append("\n")
+                .append("Sexe : ")
+                .append(this.sexe == 'M' ? "Masculin" : "Féminin")
+                .append("\n")
+                .append("Numéro de Sécurité sociale : ")
+                .append(this.numeroDeSecuriteSociale)
+                .append("\n")
+                .append("Date de naissance : ")
+                .append(this.dateNaissance())
+                .append("\n")
+                .append("Commentaires : ")
+                .append(this.commentaires != null ? this.commentaires : "[aucun commentaire]")
+                .append("\nAdresse : ");
+
+        System.out.println(sb.toString());
         this.adresse.afficher();
+
     }
+
+
+    private String dateNaissance() {
+        String s = this.dateDeNaissance.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG));
+        return s;
+    }
+
+
 }

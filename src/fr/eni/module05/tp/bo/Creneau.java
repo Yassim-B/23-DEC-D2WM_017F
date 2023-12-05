@@ -2,50 +2,46 @@ package fr.eni.module05.tp.bo;
 
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 
 public class Creneau {
 
     private LocalTime heureDebut;
     private int duree;
-    private MedecinGeneraliste medecin;
+    private Medecin medecin;
 
-    public Creneau(LocalTime heureDebut, int duree, MedecinGeneraliste medecin) {
+    /**
+     * @param heureDebut
+     * @param duree
+     * @param medecin
+     */
+    public Creneau(LocalTime heureDebut, int duree, Medecin medecin) {
         this.heureDebut = heureDebut;
         this.duree = duree;
         this.medecin = medecin;
-
         this.medecin.ajouterCreneau(this);
     }
 
-    public LocalTime getHeureDebut() {
-        return heureDebut;
+    /**
+     * 09:00 - 09:15 (15 minutes)
+     */
+    public void afficher() {
+
+        System.out.printf("%s - %s (%d minutes)%n", this.heureDebut.format(
+                        DateTimeFormatter.ofLocalizedTime(
+                                FormatStyle.SHORT)),
+                this.heureDebut.plusMinutes(this.duree),
+                this.duree);
+
+
     }
 
-    public void setHeureDebut(LocalTime heureDebut) {
-        this.heureDebut = heureDebut;
-    }
-
-    public int getDuree() {
-        return duree;
-    }
-
-    public void setDuree(int duree) {
-        this.duree = duree;
-    }
-
-    public MedecinGeneraliste getMedecin() {
+    /**
+     * @return the medecin
+     */
+    public Medecin getMedecin() {
         return medecin;
     }
 
-    public void setMedecin(MedecinGeneraliste medecin) {
-        this.medecin = medecin;
-    }
 
-    public void afficher() {
-        System.out.printf("%s - %s (%d minutes)%n",
-                DateTimeFormatter.ofPattern("hh:mm").format(heureDebut),
-                DateTimeFormatter.ofPattern("hh:mm").format(heureDebut.plusMinutes(this.duree)),
-                this.duree
-        );
-    }
 }
